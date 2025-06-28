@@ -1,0 +1,11 @@
+# ignore all files in data/
+data/
+
+# allow the csv outputs
+!data/products.csv
+
+# Mac + Jupyter notebook junk files
+.DS_Store
+.ipynb_checkpoints/
+
+*.tar
