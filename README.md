@@ -6,5 +6,5 @@
 * ls -a reveals hidden files
     * touch .gitignore creates a new empty file 
 
-
-WHERE YOU LEFT OFF: stage and commit and push oNLY your .gitignore first -- you have to make a new repo, deleted old one - refer to chat
+**Day 2:**
+* When you unzipped the .tar files, especially the images, they got separated into subfolders based on hash prefixes

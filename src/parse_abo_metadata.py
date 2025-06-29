@@ -3,8 +3,8 @@ import csv
 import os
 from tqdm import tqdm # just shows progress bar
 
-METADATA_DIR = "../data/abo/abo-listings"
-IMAGE_DIR = "../data/abo/abo-images-small"
+METADATA_DIR = "../data/abo/listings/metadata"
+IMAGE_DIR = "../data/abo/images/small"
 OUTPUT_DIR = '../data/products.csv'
 
 os.makedirs(os.path.dirname(OUTPUT_DIR), exist_ok=True) # ensures that output dir exists
@@ -24,14 +24,15 @@ with open(OUTPUT_DIR, "w", newline="", encoding="utf-8") as f_out: # opens produ
             continue
 
         filepath = os.path.join(METADATA_DIR, filename)
-        with open(filepath, "r", encoding="utf-8") as f_in:
+        with open(filepath, "r", encoding="utf-8") as f_in: # opening each JSON file
             try:
                 data = json.load(f_in)
                 product_id = data.get("item_id", "")
                 title = extract_text_field(data.get("item_name", []))
                 description = extract_text_field(data.get("bullet_point", []))
                 image_id = data.get("main_image_id", "")
-                image_path = os.path.join(IMAGE_DIR, f"{image_id}.jpg")
+                subfolder = image_id[:2] # first two chars for subfolder
+                image_path = os.path.join(IMAGE_DIR, subfolder, f"{image_id}.jpg")
 
                 if not os.path.exists(image_path):
                     continue  # skip items with missing images
